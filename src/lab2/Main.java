@@ -7,103 +7,110 @@ package lab2;
 
 import java.io.*;
 
-
-
 public class Main {
     private static BufferedReader consoleReader;
     private static BufferedReader fileReader;
-    private static BufferedWriter fileWriter;
+    private static FileWriter fileWriter;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+
         Dictionary dictionary = new Dictionary();
-        String input = consoleInput("");
-        boolean running = true;
-        while(running) {
 
-            try {
-                switch (input) {
-                    case "end":
-                        System.out.println("Bye.");
-                        running = false;
-                        break;
+        InputStreamReader myReader = new InputStreamReader(System.in);
+        consoleReader = new BufferedReader(myReader);
 
-                    case "1":
-                        System.out.println("File name: ");
-                        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-                        String fileName = consoleReader.readLine();
-                        if (!fileName.equals("Sourcetext.txt")) {
-                            System.out.println("File does not exist!");
-                        } else {
-                            FileReader fr = new FileReader("src/Lab2/Sourcetext.txt");
-                            BufferedReader br = new BufferedReader(fr);
-                            String result;
-                            while ((result = br.readLine()) != null) {
-                                System.out.println(result + "\n");
-                                dictionary.addWords(result);
-                                consoleInput("");
-                            }
-                        }
+        String input = "";
+        String fileName = "";
+        boolean run = true;
 
-                    case "2":
-                        System.out.println("Output format (0 or 1): ");
-                        String formatChoice = consoleInput("");
-                        int formatChoiceAsInt = Integer.parseInt(formatChoice);
-                        Word.changeOutputFormat(formatChoiceAsInt);
-                        System.out.println(dictionary.toString());
+        while (run) {
+            System.out.println("""
+                    
+                    
+                    Select option:
+                    1. Load from file
+                    2. List content
+                    3. Remove doubles and sort by number of occurences
+                    4. Count occurences
+                    5. Save to file
+                    end Quit program
+                                        
+                                        
+                    """);
+            input = consoleInput(input);
 
-                    case "3":
-                        dictionary.removeDuplicates();
-                        dictionary.sortDictionaryByCounts();
+            switch (input) {
+                case "1" -> {
+                    System.out.print("Load from file\nFilename?: ");
+                    fileName = consoleInput(fileName);
+                    FileReader newFileReader;
 
-                    case "4":
-                        dictionary.countOccurrences();
+                    try {
+                        newFileReader = new FileReader(fileName);
+                        fileReader = new BufferedReader(newFileReader);
+                        fileName = fileReader.readLine();
+                        fileReader.close();
+                        newFileReader.close();
+                        dictionary.addWords(fileName);
 
-                    case "5":
-                        System.out.println("Filename: ");
-                        String filename2 = consoleInput("");
-                        if (!filename2.equals("Sourcetext.txt")) {
-                            System.out.println("File does not exist!");
-                        }else{
-                            FileWriter fwr = new FileWriter("src/Lab2/Sourcetext.txt");
-                            BufferedWriter bw = new BufferedWriter(fwr);
-
-                            //probably wrong
-                            String toBeWritten = dictionary.toString();
-
-                        }
-
-                    default:
-                        System.out.println("Try again");
-
+                    } catch (FileNotFoundException e) {
+                        System.out.println("File does not exist!\n\n");
+                    } catch (IOException e) {
+                        System.out.println("IO error");
+                    }
                 }
+                case "2" -> {
+                    System.out.println("List content\nOutputformat (0 or 1):");
+                    input = consoleInput(input);
+                    try {
+                        int number = Integer.parseInt(input);
+                        Word.changeOutputFormat(number);
+                        System.out.println(dictionary.toString());
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Not a number");
+                    }
+                }
+                case "3" -> {
+                    System.out.println("Remove doubles and sort by number of occurences\n");
+                    dictionary.removeDuplicates();
+                    dictionary.sortDictionaryByCounts();
+                    System.out.println(dictionary.toString());
+                }
+                case "4" -> {
+                    System.out.println("Count occurences\n");
+                    dictionary.countOccurrences();
+                }
+                case "5" -> {
+                    System.out.println("Save to file\nEnter fileName.txt");
+                    input = consoleInput(input);
+                    File myFile = new File(input);
 
-            } catch (IOException e) {
-                System.out.println("IO error");
+                    try {
+                        myFile.createNewFile();
+                        fileWriter = new FileWriter(myFile, false);
+                        fileWriter.write(dictionary.toString());
+                        fileWriter.close();
+                    } catch (IOException e) {
+                        System.out.println("IOException");
+                    }
+                }
+                case "end" -> {
+                    System.out.println("Bye.");
+                    run = false;
+                }
+                default -> System.out.println("Try again");
             }
         }
-
     }
 
+    public static String consoleInput(String arg) {
+        String dummy;
 
-
-
-    public static String consoleInput(String arg) throws IOException{
-
-        try{
-            System.out.println("Select option: \n ----------------------");
-            System.out.println("1: Load from file");
-            System.out.println("2: List content");
-            System.out.println("3: Remove duplicates and sort by number of occurrences");
-            System.out.println("4: Count occurrences");
-            System.out.println("5: Save to file\n");
-            BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-            arg = consoleReader.readLine();
-            return arg;
-        }
-        catch (IOException e){
+        try {
+            dummy = consoleReader.readLine();
+        } catch (IOException e) {
             return "";
         }
-
+        return dummy;
     }
-
 }

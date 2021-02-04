@@ -28,6 +28,7 @@ public class Dictionary {
         return theDictionary.size();
     }
 
+    // Flyttar allt till vänster så man måste backa loppen.
     public void removeDuplicates() {
         for (int i = 0; i < theDictionary.size(); i++) {
             ArrayList<Word> foundWords = new ArrayList<>();
@@ -44,6 +45,7 @@ public class Dictionary {
         }
     }
 
+    // Använda SET funktion för att inte flytta allt till vänster, så vi inte byter plats. då de är en dynamisk array.
     public void sortDictionaryByCounts() {
         ArrayList<Word> newDictionary = new ArrayList<>();
         for (int i = 0; i < theDictionary.size(); ) {
@@ -71,6 +73,7 @@ public class Dictionary {
         sortDictionaryByCounts();
         for (Word e : theDictionary)
             System.out.println(e.getWord() + ":" + e.getCounts() + " ");
+        System.out.println(theDictionary);
     }
 
     public String toString() {

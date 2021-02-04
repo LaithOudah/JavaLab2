@@ -35,14 +35,14 @@ class Word implements Comparable<Word> {
             outputFormat = 1;
         }
     }
-    
+
     public String toString() {
         String arg1 = theWord;
         int arg2 = counts;
         if (outputFormat == 0) {
             return "The word " + arg1 + " has occurred " + arg2 + " times.";
         } else {
-            return "The word is: " + arg1; //test
+            return "The word is: " + arg1;
         }
     }
 
