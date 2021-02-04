@@ -35,7 +35,7 @@ class Word implements Comparable<Word> {
             outputFormat = 1;
         }
     }
-
+    
     public String toString() {
         String arg1 = theWord;
         int arg2 = counts;

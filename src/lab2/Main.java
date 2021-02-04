@@ -4,7 +4,7 @@ Assignment: Lab 2
 */
 
 package lab2;
-
+//This is a comment
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
