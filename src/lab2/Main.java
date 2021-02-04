@@ -29,7 +29,8 @@ public class Main {
 
                     case "1":
                         System.out.println("File name: ");
-                        String fileName = consoleInput("");
+                        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+                        String fileName = consoleReader.readLine();
                         if (!fileName.equals("Sourcetext.txt")) {
                             System.out.println("File does not exist!");
                         } else {
@@ -37,8 +38,9 @@ public class Main {
                             BufferedReader br = new BufferedReader(fr);
                             String result;
                             while ((result = br.readLine()) != null) {
-                                System.out.println(result);
+                                System.out.println(result + "\n");
                                 dictionary.addWords(result);
+                                consoleInput("");
                             }
                         }
 
@@ -86,14 +88,14 @@ public class Main {
 
 
     public static String consoleInput(String arg) throws IOException{
+
         try{
-            System.out.println("Select option: ");
+            System.out.println("Select option: \n ----------------------");
             System.out.println("1: Load from file");
             System.out.println("2: List content");
             System.out.println("3: Remove duplicates and sort by number of occurrences");
             System.out.println("4: Count occurrences");
-            System.out.println("5: Save to file");
-            System.out.println("\"end\": End");
+            System.out.println("5: Save to file\n");
             BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
             arg = consoleReader.readLine();
             return arg;
