@@ -6,7 +6,7 @@ Assignment: Lab 2
 package lab2;
 
 import java.io.*;
-import java.sql.SQLOutput;
+
 
 
 public class Main {
@@ -29,8 +29,8 @@ public class Main {
 
                     case "1":
                         System.out.println("File name: ");
-                        String choice = consoleReader.readLine();
-                        if (!choice.equals("Sourcetext.txt")) {
+                        String fileName = consoleInput("");
+                        if (!fileName.equals("Sourcetext.txt")) {
                             System.out.println("File does not exist!");
                         } else {
                             FileReader fr = new FileReader("src/Lab2/Sourcetext.txt");
@@ -43,23 +43,28 @@ public class Main {
                         }
 
                     case "2":
-                        System.out.println("List content");
                         System.out.println("Output format (0 or 1): ");
-                        int formatChoice = consoleReader.read();
-                        Word.changeOutputFormat(formatChoice);
+                        String formatChoice = consoleInput("");
+                        int formatChoiceAsInt = Integer.parseInt(formatChoice);
+                        Word.changeOutputFormat(formatChoiceAsInt);
                         System.out.println(dictionary.toString());
 
                     case "3":
-                        System.out.println("Remove duplicates and sort by number of occurrences");
                         dictionary.removeDuplicates();
                         dictionary.sortDictionaryByCounts();
 
                     case "4":
-                        System.out.println("Count occurrences");
                         dictionary.countOccurrences();
-                    case "5":
 
-                        System.out.println("Save to file");
+                    case "5":
+                        System.out.println("Filename: ");
+                        String filename2 = consoleInput("");
+                        if (!filename2.equals("Sourcetext.txt")) {
+                            System.out.println("File does not exist!");
+                        }else{
+                            FileWriter fwr = new FileWriter("src/Lab2/Sourcetext.txt");
+                            BufferedWriter bw = new BufferedWriter(fwr);
+                        }
 
                     default:
                         System.out.println("Try again");
