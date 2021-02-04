@@ -16,14 +16,17 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Dictionary dictionary = new Dictionary();
+        String input = consoleInput("");
+        boolean running = true;
+        while(running) {
 
-        while() {
-            String input = consoleInput("");
             try {
                 switch (input) {
                     case "end":
                         System.out.println("Bye.");
+                        running = false;
                         break;
+
                     case "1":
                         System.out.println("File name: ");
                         String choice = consoleReader.readLine();
@@ -38,20 +41,24 @@ public class Main {
                                 dictionary.addWords(result);
                             }
                         }
+
                     case "2":
                         System.out.println("List content");
                         System.out.println("Output format (0 or 1): ");
                         int formatChoice = consoleReader.read();
                         Word.changeOutputFormat(formatChoice);
-                        dictionary.toString();
+                        System.out.println(dictionary.toString());
+
                     case "3":
                         System.out.println("Remove duplicates and sort by number of occurrences");
                         dictionary.removeDuplicates();
                         dictionary.sortDictionaryByCounts();
+
                     case "4":
                         System.out.println("Count occurrences");
                         dictionary.countOccurrences();
                     case "5":
+
                         System.out.println("Save to file");
 
                     default:
