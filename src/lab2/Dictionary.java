@@ -59,7 +59,7 @@ public class Dictionary {
         theDictionary = newDictionary;
     }
 
-    /**
+    /*
      * Expected output:
      * 1 words occurred 10 times.
      * 2 words occurred 8 times.
@@ -74,10 +74,10 @@ public class Dictionary {
     }
 
     public String toString() {
-        String text = " ";
+        StringBuilder text = new StringBuilder(" ");
         for (Word i : theDictionary) {
-            text += i.getWord() + " ";
+            text.append(i.getWord()).append(" ");
         }
-        return text;
+        return text.toString();
     }
 }
