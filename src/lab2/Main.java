@@ -5,9 +5,8 @@ Assignment: Lab 2
 
 package lab2;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
+import java.io.*;
+
 
 public class Main {
     private static BufferedReader consoleReader;
@@ -29,9 +28,33 @@ public class Main {
         }
     }
 
-    public static String consoleInput(String arg) {
+    public static String consoleInput(String arg) throws IOException{
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        try{
+            System.out.println("Select option: ");
+            String line = consoleReader.readLine();
+            switch (line){
+                case "end":
+                    System.out.println("Bye.");
+                    break;
+                case "1":
+                    System.out.println("Load from file");
+                    System.out.println("File name: ");
+                    String choice = consoleReader.readLine();
+                    if(!choice.equals("Sourcetext.txt")){
+                        System.out.println("File does not exist!");
+                    }
+                    else{
 
-        return null; //fix later//stuff //test push
+                    }
+
+
+            }
+
+        } catch (IOException e) {
+            return "";
+        }
+
+        return null;
     }
-
 }
