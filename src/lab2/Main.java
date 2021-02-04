@@ -45,10 +45,18 @@ public class Main {
                         System.out.println("File does not exist!");
                     }
                     else{
-
+                        FileReader fr = new FileReader("src/Lab2/Sourcetext.txt");
+                        BufferedReader br = new BufferedReader(fr);
+                        String result;
+                        while ((result = br.readLine()) != null) {
+                            System.out.println(result);
+                        }
                     }
-
-
+                case"2":
+                    System.out.println("List content");
+                    System.out.println("Output format (0 or 1): ");
+                    int formatChoice = consoleReader.read();
+                    Word.changeOutputFormat(formatChoice);
             }
 
         } catch (IOException e) {
