@@ -64,6 +64,10 @@ public class Main {
                         }else{
                             FileWriter fwr = new FileWriter("src/Lab2/Sourcetext.txt");
                             BufferedWriter bw = new BufferedWriter(fwr);
+
+                            //probably wrong
+                            String toBeWritten = dictionary.toString();
+
                         }
 
                     default:
