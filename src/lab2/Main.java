@@ -13,8 +13,8 @@ public class Main {
     private static FileWriter fileWriter;
 
     public static void main(String[] args) {
-
         Dictionary dictionary = new Dictionary();
+
 
         String input = "";
         String fileName = "";
@@ -25,16 +25,15 @@ public class Main {
                                         
                                         
                     Select option:
-                    1. Load from file
-                    2. List content
-                    3. Remove doubles and sort by number of occurences
-                    4. Count occurences
-                    5. Save to file
-                    end Quit program
+                    1: Load from file
+                    2: List content
+                    3: Remove duplicates and sort by number of occurrences
+                    4: Count occurrences
+                    5: Save to file
+                    end: Quit program
                                         
                                         
                     """);
-
             input = consoleInput(input);
 
             switch (input) {
@@ -64,6 +63,8 @@ public class Main {
                     try {
                         int number = Integer.parseInt(input);
                         Word.changeOutputFormat(number);
+                        dictionary.removeDuplicates();
+                        dictionary.sortDictionaryByCounts();
                         System.out.println(dictionary.toString());
                     } catch (NumberFormatException ex) {
                         System.out.println("Not a number");
