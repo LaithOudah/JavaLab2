@@ -16,8 +16,6 @@ public class Main {
 
         Dictionary dictionary = new Dictionary();
 
-        InputStreamReader myReader = new InputStreamReader(System.in);
-        consoleReader = new BufferedReader(myReader);
 
         String input = "";
         String fileName = "";
@@ -46,12 +44,13 @@ public class Main {
                     FileReader newFileReader;
 
                     try {
-                        newFileReader = new FileReader(fileName);
-                        fileReader = new BufferedReader(newFileReader);
-                        fileName = fileReader.readLine();
+                        newFileReader = new FileReader("src/Lab2/Sourcetext.txt");
+                        BufferedReader fileReader = new BufferedReader(newFileReader);
+                        String fileContents = fileReader.readLine();
+                        System.out.println(fileContents);
                         fileReader.close();
                         newFileReader.close();
-                        dictionary.addWords(fileName);
+                        dictionary.addWords(fileContents);
 
                     } catch (FileNotFoundException e) {
                         System.out.println("File does not exist!\n\n");
@@ -104,13 +103,12 @@ public class Main {
     }
 
     public static String consoleInput(String arg) {
-        String dummy;
-
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            dummy = consoleReader.readLine();
+            arg = consoleReader.readLine();
         } catch (IOException e) {
             return "";
         }
-        return dummy;
+        return arg;
     }
 }
