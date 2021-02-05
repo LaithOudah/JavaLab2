@@ -35,7 +35,7 @@ public class Main {
                                         
                     """);
             input = consoleInput(input);
-            //
+
             switch (input) {
                 case "1" -> {
                     System.out.print("Load from file\nFilename?: ");
