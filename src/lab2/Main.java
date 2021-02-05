@@ -26,7 +26,7 @@ public class Main {
                         System.out.println("Bye.");
                         running = false;
                         break;
-                    //v0.26
+
                     case "1":
                         System.out.println("File name: ");
                         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
