@@ -16,15 +16,14 @@ public class Main {
 
         Dictionary dictionary = new Dictionary();
 
-
         String input = "";
         String fileName = "";
         boolean run = true;
 
         while (run) {
             System.out.println("""
-                    
-                    
+                                        
+                                        
                     Select option:
                     1. Load from file
                     2. List content
@@ -35,6 +34,7 @@ public class Main {
                                         
                                         
                     """);
+
             input = consoleInput(input);
 
             switch (input) {

@@ -1,6 +1,6 @@
 /*
 Author(s): Laith Oudah & Klas Nordquist
-Assignment: Lab 2
+Assignment - Lab 2
 */
 
 package lab2;
