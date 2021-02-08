@@ -37,6 +37,7 @@ public class Main {
                                         
                                         
                     """);
+
             input = consoleInput(input);
 
             switch (input) {
@@ -86,7 +87,6 @@ public class Main {
                     File myFile = new File(input);
 
                     try {
-                        myFile.createNewFile();
                         fileWriter = new FileWriter(myFile, false);
                         fileWriter.write(dictionary.toString());
                         fileWriter.close();
