@@ -1,6 +1,6 @@
 /*
 Author(s): Laith Oudah & Klas Nordquist
-Assignment: Lab 2
+Assignment - Lab 2
 */
 
 package lab2;
@@ -61,26 +61,42 @@ public class Dictionary {
         theDictionary = newDictionary;
     }
 
-    /*
-     * Expected output:
-     * 1 words occurred 10 times.
-     * 2 words occurred 8 times.
-     * 1 words occurred 4 times.
-     */
-
     public void countOccurrences() {
         removeDuplicates();
         sortDictionaryByCounts();
-        for (Word e : theDictionary)
-            System.out.println(e.getWord() + ":" + e.getCounts() + " ");
-        System.out.println(theDictionary);
+        StringBuilder temp = new StringBuilder("");
+        for (int i = 0; i < theDictionary.size(); i++) {
+            int countWords = 1;
+            for (int j = i + 1; j < theDictionary.size(); j++) {
+                if (theDictionary.get(i).getCounts() == theDictionary.get(j).getCounts())
+                    countWords++;
+            }
+            if (i == 0)
+                temp.append(String.format("%d" + " words occured " + "%d times\n", countWords, theDictionary.get(i).getCounts()));
+            else if (theDictionary.get(i).getCounts() != theDictionary.get(i - 1).getCounts()) {
+                temp.append(String.format("%d" + " words occured " + "%d times\n", countWords, theDictionary.get(i).getCounts()));
+            }
+        }
+        System.out.println(temp);
     }
 
-    public String toString() {
-        StringBuilder text = new StringBuilder(" ");
-        for (Word i : theDictionary) {
-            text.append(i.getWord()).append(" ");
+    /*
+        public void countOccurrences() {
+            removeDuplicates();
+            sortDictionaryByCounts();
+            for (Word e : theDictionary)
+                System.out.println(e.getWord() + ":" + e.getCounts() + " ");
+
+            //System.out.println(theDictionary);
         }
-        return text.toString();
+    */
+    //though is good, probably wont work.
+    public String toString() {
+        StringBuilder myString = new StringBuilder();
+        for (int i = 0; i < numberOfWords(); i++) {
+            myString.append("\n").append(theDictionary.get(i).toString());
+        }
+        String done = myString.toString();
+        return done;
     }
 }

@@ -1,11 +1,11 @@
 /*
 Author(s): Laith Oudah & Klas Nordquist
-Assignment: Lab 2
+Assignment - Lab 2
 */
 
 package lab2;
 
-class Word implements Comparable<Word> {
+public class Word {
     private String theWord;
     private int counts;
     private static int outputFormat;
@@ -37,17 +37,10 @@ class Word implements Comparable<Word> {
     }
 
     public String toString() {
-        String arg1 = theWord;
-        int arg2 = counts;
         if (outputFormat == 0) {
-            return "The word " + arg1 + " has occurred " + arg2 + " times.";
+            return "The word " + getWord() + " has occurred " + getCounts() + " times.";
         } else {
-            return "The word is: " + arg1;
+            return "The word is: " + getWord();
         }
-    }
-
-    @Override
-    public int compareTo(Word o) {
-        return this.counts - o.getCounts();
     }
 }
