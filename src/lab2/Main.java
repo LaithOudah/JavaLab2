@@ -72,13 +72,13 @@ public class Main {
                     }
                 }
                 case "3" -> {
-                    System.out.println("Remove doubles and sort by number of occurences\n");
+                    System.out.println("Remove doubles and sort by number of occurrences\n");
                     dictionary.removeDuplicates();
                     dictionary.sortDictionaryByCounts();
                     System.out.println(dictionary.toString());
                 }
                 case "4" -> {
-                    System.out.println("Count occurences\n");
+                    System.out.println("Count occurrences\n");
                     dictionary.countOccurrences();
                 }
                 case "5" -> {
